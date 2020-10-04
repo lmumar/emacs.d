@@ -194,7 +194,6 @@
 (global-set-key (kbd "M-2") (kbd "C-x 2"))  ;; Cmd-2 split horizontally
 (global-set-key (kbd "M-3") (kbd "C-x 3"))  ;; Cmd-3 split vertically
 (global-set-key (kbd "M-0") (kbd "C-x 0"))  ;; Cmd-0...
-(global-set-key (kbd "M-w") (kbd "C-x 0"))  ;; ...and Cmd-w to close current window
 
 ;; PROJECT MANAGEMENT
 (use-package projectile
