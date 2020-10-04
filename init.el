@@ -18,6 +18,12 @@
 ;;
 ;; Sane defaults
 
+;; handle emacs utf-8 input
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
+(setenv "LANG" "en_us.UTF-8")
+
 ;; Smoother and nicer scrolling
 (setq scroll-margin 10
    scroll-step 1
@@ -64,11 +70,6 @@
 (global-set-key (kbd "M-a") 'mark-whole-buffer)       ;; select all
 (global-set-key (kbd "M-}") 'projectile-next-project-buffer)       ;; next buffer
 (global-set-key (kbd "M-{") 'projectile-previous-project-buffer)   ;; previous buffer
-
-;; We need Emacs kill ring and system clipboard to be independent. Simpleclip is the solution to that.
-(use-package simpleclip
-  :config
-  (simpleclip-mode 1))
 
 ;; Delete trailing spaces and add new line in the end of a file on save.
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
