@@ -155,6 +155,20 @@
   :hook (prog-mode . highlight-symbol-mode)
   :config (setq highlight-symbol-idle-delay 0.3))
 
+;; CODE COMPLETION
+(use-package company
+  :config
+  (setq company-idle-delay 0.1)
+  (setq company-global-modes '(not org-mode))
+  (setq company-minimum-prefix-length 1)
+  (add-hook 'after-init-hook 'global-company-mode))
+
+
+;; Set the company completion vocabulary to css and html when in web-mode.
+(defun my-web-mode-hook ()
+  (set (make-local-variable 'company-backends) '(company-css company-web-html company-yasnippet company-files)))
+
+
 ;; WINDOW MANAGEMENT
 
 ;; This is rather radical, but saves from a lot of pain in the ass.
