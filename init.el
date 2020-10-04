@@ -83,6 +83,9 @@
 ;;
 ;; VISUALS
 
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+
 ;; Enable transparent title bar on macOS
 (when (memq window-system '(mac ns))
   (add-to-list 'default-frame-alist '(ns-appearance . light)) ;; {light, dark}
