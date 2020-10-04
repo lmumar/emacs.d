@@ -65,6 +65,11 @@
 (global-set-key (kbd "M-}") 'projectile-next-project-buffer)       ;; next buffer
 (global-set-key (kbd "M-{") 'projectile-previous-project-buffer)   ;; previous buffer
 
+;; We need Emacs kill ring and system clipboard to be independent. Simpleclip is the solution to that.
+(use-package simpleclip
+  :config
+  (simpleclip-mode 1))
+
 ;; Delete trailing spaces and add new line in the end of a file on save.
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (setq require-final-newline t)
