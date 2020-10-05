@@ -68,8 +68,8 @@
 (global-set-key (kbd "M-S") 'write-file)              ;; save as
 (global-set-key (kbd "M-q") 'save-buffers-kill-emacs) ;; quit
 (global-set-key (kbd "M-a") 'mark-whole-buffer)       ;; select all
-(global-set-key (kbd "M-}") 'projectile-next-project-buffer)       ;; next buffer
-(global-set-key (kbd "M-{") 'projectile-previous-project-buffer)   ;; previous buffer
+(global-set-key (kbd "<A-right>") 'projectile-next-project-buffer)       ;; next buffer
+(global-set-key (kbd "<A-left>") 'projectile-previous-project-buffer)   ;; previous buffer
 
 ;; Delete trailing spaces and add new line in the end of a file on save.
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
