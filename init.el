@@ -100,7 +100,7 @@
 (load-theme 'tsdh-light)
 
 ;; Always wrap lines
-(global-visual-line-mode 1)
+;; (global-visual-line-mode 1)
 
 ;; Highlight current line
 (global-hl-line-mode 1)
