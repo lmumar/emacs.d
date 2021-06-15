@@ -94,7 +94,7 @@
 
 ;; Font
 (when (member "JetBrains Mono" (font-family-list))
-  (set-face-attribute 'default nil :font "JetBrains Mono 15"))
+  (set-face-attribute 'default nil :font "JetBrains Mono 16"))
 (setq-default line-spacing 2)
 
 ;; Nice and simple default light theme.
@@ -173,10 +173,51 @@
   (setq company-minimum-prefix-length 1)
   (add-hook 'after-init-hook 'global-company-mode))
 
-
 ;; Set the company completion vocabulary to css and html when in web-mode.
-(defun my-web-mode-hook ()
-  (set (make-local-variable 'company-backends) '(company-css company-web-html company-yasnippet company-files)))
+(defun web-mode-init-hook ()
+  (set (make-local-variable 'company-backends) '(company-css company-web-html company-yasnippet company-files))
+  (setq web-mode-markup-indent-offset 2))
+
+;; JS editing & friends
+(use-package web-mode
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.jsx?$" . web-mode))
+  (setq web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'")))
+  (add-hook 'web-mode-hook  'web-mode-init-hook))
+
+;; Enable ESLint errors
+(use-package flycheck
+  :ensure t
+  :config
+  (setq-default flycheck-disabled-checkers
+              (append flycheck-disabled-checkers
+                      '(javascript-jshint json-jsonlist)))
+  (flycheck-add-mode 'javascript-eslint 'web-mode)
+  (add-hook 'after-init-hook #'global-flycheck-mode))
+
+;; Use eslint from node_modules
+(use-package add-node-modules-path
+  :ensure t
+  :config
+  (add-hook 'flycheck-mode-hook 'add-node-modules-path))
+
+;; Use prettier
+(use-package prettier-js
+  :ensure t)
+
+(defun web-mode-init-prettier-hook ()
+  (add-node-modules-path)
+  (prettier-js-mode))
+(add-hook 'web-mode-hook  'web-mode-init-prettier-hook)
+
+(use-package emmet-mode
+  :ensure t
+  :config
+  (add-hook 'web-mode-hook  'emmet-mode))
+
+;; RUBY
+
 
 ;; MARKDOWN
 (use-package markdown-mode
